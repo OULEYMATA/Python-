@@ -1,0 +1,769 @@
+Delivered-To: ouleymatak@gmail.com
+Received: by 2002:a05:6020:106a:b0:18d:e828:a25b with SMTP id a10csp586063wde;
+        Mon, 31 Jan 2022 03:25:31 -0800 (PST)
+X-Received: by 2002:a05:6102:66a:: with SMTP id z10mr7649475vsf.62.1643628330864;
+        Mon, 31 Jan 2022 03:25:30 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1643628330; cv=none;
+        d=google.com; s=arc-20160816;
+        b=deP9l57DFQP1PJlCyOMF9RBmcXwPRMdZro8zNstUNS2IGcaolauzganyqDQVMUfpCY
+         lhfJ84U0fc5Vxt+vTeOdkfAxLEpYS+xFdl4xiSKsjyrdLd/Jg9byVT8WfzAiwGr7ZmLX
+         6vb09hpC8pxPtPZ25M952wmh+zebFmpHPpWFjJ+ojxCAzpM4V/t6wvK4B+H6ypM0xuCP
+         RUWD6KOW4fS1ybkbpYX5MzONlj4fPLuC+I8yvxhzSivh+/bayLKrHPJyONGSsahvOmCD
+         Ct4kRRzyH7mz50HwZPpTXg1vQ3kPzEgwIP5K4lFHqV5VyNMmnJ9mZH8HUD2FjwbIgXhT
+         YokA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:date:message-id:feedback-id:mime-version
+         :dkim-signature;
+        bh=fF4u6z9zhiVFH0Ce0k2rd8gMH7KC3Ta4rqbGh8AQRcU=;
+        b=CDdvvQxzJv1rSy8SAZbUj/Bn0qstwA2DaBuCS2vcYUdGn5EYA57JKwA5i3wFVMtN9A
+         or7ECx4X2DphTGw7Kq00focF8WHAriDwCNiJVUgOQJx8HjzWGrQOZef3oaABPqBKt+QB
+         fZYnrcPU6JdbjTTenAT3O+NGNHPu2M+WKmzkgjIVCRkJ4jAW0Yu/MMAKYVH4tDpp39Gn
+         mRoTWUpX9FJhyJ4/8GcnpqmWK+7eqcUgxRpBvVm4Aco9cyO8zj4SxYn6q0llj0fP3NSw
+         zLFPr8LVyaMwjZAl3400ppVY73bTTMc+vROdJUWdzdEaNpD8JSsvB8SLojB9lG2RF7QH
+         3doA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20210112 header.b=ocyJW79H;
+       spf=pass (google.com: domain of 3ksf3yrykcq0sbezf-erprvcgf-abercyltbbtyr.pbzbhyrlzngnxtznvy.pbz@trix.bounces.google.com designates 209.85.220.77 as permitted sender) smtp.mailfrom=3Ksf3YRYKCq0SbeZf-eRPRVcgf-abeRcYlTbbTYR.PbZbhYRlZNgNXTZNVY.PbZ@trix.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Return-Path: <3Ksf3YRYKCq0SbeZf-eRPRVcgf-abeRcYlTbbTYR.PbZbhYRlZNgNXTZNVY.PbZ@trix.bounces.google.com>
+Received: from mail-sor-f77.google.com (mail-sor-f77.google.com. [209.85.220.77])
+        by mx.google.com with SMTPS id e20sor7265882vkp.3.2022.01.31.03.25.30
+        for <ouleymatak@gmail.com>
+        (Google Transport Security);
+        Mon, 31 Jan 2022 03:25:30 -0800 (PST)
+Received-SPF: pass (google.com: domain of 3ksf3yrykcq0sbezf-erprvcgf-abercyltbbtyr.pbzbhyrlzngnxtznvy.pbz@trix.bounces.google.com designates 209.85.220.77 as permitted sender) client-ip=209.85.220.77;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20210112 header.b=ocyJW79H;
+       spf=pass (google.com: domain of 3ksf3yrykcq0sbezf-erprvcgf-abercyltbbtyr.pbzbhyrlzngnxtznvy.pbz@trix.bounces.google.com designates 209.85.220.77 as permitted sender) smtp.mailfrom=3Ksf3YRYKCq0SbeZf-eRPRVcgf-abeRcYlTbbTYR.PbZbhYRlZNgNXTZNVY.PbZ@trix.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:feedback-id:message-id:date:subject:from:to;
+        bh=fF4u6z9zhiVFH0Ce0k2rd8gMH7KC3Ta4rqbGh8AQRcU=;
+        b=ocyJW79HkZynAk/6aHeP8Gw8mZB/dKsq+c8uQnqZIrzJJRB9WF20TGRsXGf8RYdi9+
+         5XQdFKd2oLyHcSwNyQbWTkYpTNnT1jFe24CEm8I7obR0tDd2oKe72jH+LzbrLEA8zAi0
+         vA5bEL20SVlDDyVo5ja7e9aGDC1Kzx9AjRZYQfzLGtKwXkkwlS404u6ZDFgKiMdjPoiA
+         dshkolnurdux1p+n4z8H+foYOVEui9nV9+rhZwgM5uG8qwkck0PoqrGkbaaWi1KbOTtt
+         +9gz+vwixRszVKOfoCh/hQ1r2OiDvpmkYHX0x7eHdBKRzGbC5omyZ9gQuvDeRIyIz1QD
+         SKkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:feedback-id:message-id:date:subject
+         :from:to;
+        bh=fF4u6z9zhiVFH0Ce0k2rd8gMH7KC3Ta4rqbGh8AQRcU=;
+        b=VQJEXzk0x4O89oYa23/a0FjQOGHupgTchIn+bjp2iKttv1CTt1Ik805HHKU+au8gh9
+         KzLiu9Vs66B5DgwuIEYicD10yUMzYbM5hcxLy3fI/kA5ymwRey3QzhrMLcol4fLt5vrA
+         XW0qxTCVaFqIGLqCC30hPksMnEb+m0r5VP8fjXnqFqBlE8MYN1vP08tYKzWa9Cxsb5n2
+         SUxLuJ57VFvOYz5Dx3B57D7BoBVJZLwdoQPrAmCycSsvKeLJ1hQBrw530NK4MEmZAMKG
+         lbufBnya6Fkr2bwD4yhlJ5CB0RcKsckAyw5oykfa79wRoFnR5L7mh08XpVWmqCe4poKQ
+         KReg==
+X-Gm-Message-State: AOAM532tpaleWDnl3Z+VPyf+J55rRq/Tg71L7f00DFMYW944en8GT30i
+	WUiY0LY4dWiA+mZoxOdPB5r70quAxau9
+X-Google-Smtp-Source: ABdhPJx9ckJOb5aqhyyEyW9g1Jrhs9dfDMiPUVvpBnI6FloyxSueAOpxHKzdRdZjiegCAF8QhuQERRecEmd8TFxTmckurw==
+MIME-Version: 1.0
+X-Received: by 2002:a05:6122:134e:: with SMTP id f14mr7946717vkp.4.1643628330479;
+ Mon, 31 Jan 2022 03:25:30 -0800 (PST)
+Feedback-ID: MailTypeResponseReceipt:GoogleForms
+X-GoogleForms-FormId: e/1FAIpQLSeGl0QzH55HCLaSSYWXEjO7Hu7qUFvbH6_5xXCDKp9zVOkxdw
+X-GoogleForms-CustomerDisplayName: Groupe GEMA
+Message-ID: <000000000000c7f71305d6df0ad5@google.com>
+Date: Mon, 31 Jan 2022 11:25:30 +0000
+Subject: MARKETING STRATEGIQUE - Etude de cas
+From: =?UTF-8?Q?Google=C2=A0Forms?= <forms-receipts-noreply@google.com>
+To: ouleymatak@gmail.com
+Content-Type: multipart/alternative; boundary="000000000000c7f6fd05d6df0ad2"
+
+--000000000000c7f6fd05d6df0ad2
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+R29vZ2xlIEZvcm1zDQoNCg0KTWVyY2kgZCdhdm9pciByZW1wbGkgbGUgZm9ybXVsYWlyZSBNQVJL
+RVRJTkcgU1RSQVRFR0lRVUUgLSBFdHVkZSBkZSBjYXMNClZvaWNpIGNlIHF1aSBhIMOpdMOpIHJl
+w6d1Lg0KDQoNCk1BUktFVElORyBTVFJBVEVHSVFVRSAtIEV0dWRlIGRlIGNhcw0KDQozaCBBdWN1
+biBkb2N1bWVudCBuJ2VzdCBhdXRvcmlzw6kuIE1lcmNpIGRlIGJpZW4gdm91bG9pciBjb25zZXJ2
+ZXIgdW5lIGNvcGllICANCmRlIHZvdHJlIHBhcnRpZWwgZXQgZGUgbGEgcHVibGllciBzdXIgdm90
+cmUgQ2xhc3Nyb29tLg0KDQoNCkFkcmVzc2UgZS1tYWlsICoNCg0KDQpvdWxleW1hdGFrQGdtYWls
+LmNvbQ0KDQoNCk5vbS9wcsOpbm9tICoNCg0KDQpLYW50ZSBPdWxleW1hdGENCg0KDQpDbGFzc2Ug
+Kg0KDQoNCklBUy1NMUxNLURBMQ0KDQoNCklBUy1NMUpWLURBMQ0KDQoNCklBUy1NMVZTLURBMQ0K
+DQoNCklBUy1NMUxNLURTMQ0KDQoNCklBUy1NMVZTLURTMQ0KDQoNCkV0dWRlIGRlIGNhcw0KDQpM
+YSBtYWlzb24gR3VlcmxhaW4sIGZvbmTDqWUgZW4gMTgyOCwgYSBsYW5jw6kgc2Egbm91dmVsbGUg
+ZnJhZ3JhbmNlIGbDqW1pbmluZSwgIA0KTGEgcGV0aXRlIFJvYmUgTm9pcmUgZW4gc2VwdGVtYnJl
+IDIwMDksIHF1aSBmaWd1cmUgdG91am91cnMgcGFybWkgbGUgdG9wIDEwICANCmRlcyBwYXJmdW1z
+IGbDqW1pbmlucyBwbHVzIGRlIDEwIGFucyBhcHLDqHMuIENlIHBhcmZ1bSBzJ2luc2NyaXQgZGFu
+cyAgDQpsJ2hpc3RvaXJlIGRlIEd1ZXJsYWluIHF1aSBwZXJww6l0dWUgc2F2b2lyLWZhaXJlIGV0
+IGlubm92YXRpb24gZGVwdWlzIDE5MSAgDQphbnMuIDUgZ8OpbsOpcmF0aW9ucyBkZSBwYXJmdW1l
+dXJzIHNlIHNvbnQgc3VjY8OpZMOpIGRlcHVpcyAxODI4LCBkb25uYW50ICANCm5haXNzYW5jZSDD
+oCBkZXMgbXl0aGVzIGRlIGxhIHBhcmZ1bWVyaWUsIHRlbHMgSmlja3kgb3UgU2hhbGltYXIuIFNv
+dXZlbnQgIA0KY29uc2lkw6lyw6lzIGNvbW1lIGRlcyByw6l2b2x1dGlvbnMgb2xmYWN0aXZlcywg
+Y2VzIHBhcmZ1bXMgcmVmbMOodGVudCB1biAgDQpzYXZvaXItZmFpcmUgZXhjZXB0aW9ubmVsIGVu
+IHRlcm1lcyBkZSBzw6lsZWN0aW9uIGRlcyBtYXRpw6hyZXMgcHJlbWnDqHJlLCBkZSAgDQpjcsOp
+YXRpb24gZGUgZmxhY29ucywgKHNvdXZlbnQgY29uw6d1cyBlbiBjb2xsYWJvcmF0aW9uIGF2ZWMg
+ZGVzIGRlc2lnbmVycyBkZSAgDQpyZW5vbSBjb21tZSBCYWNjYXJhdCkgZXQgZGUgY29udGV1ciBk
+J2hpc3RvaXJlcy4gSW5pdGlhbGVtZW50IGRpc3RyaWJ1w6kgIA0KdW5pcXVlbWVudCBkYW5zIGxl
+cyBib3V0aXF1ZXMgcGFyaXNpZW5uZXMgYXUgc2VpbiBkZXMgY29sbGVjdGlvbnMgIA0KZXhjbHVz
+aXZlcywgbGEgZnJhZ3JhbmNlIHPDqWR1aXQgcmFwaWRlbWVudCBsZXMgY2xpZW50cy4gRm9ydGUg
+ZGUgY2Ugc3VjY8OocywgIA0KTGEgcGV0aXRlIFJvYmUgTm9pcmUgZXN0IHLDqWludGVycHLDqXTD
+qWUgZW4gMjAxMiBwYXIgbGUgcGFyZnVtZXVyIGRlIGxhICANCm1haXNvbiBHdWVybGFpbiwgVGhp
+ZXJyeSBXYXNzZXIuIFVuZSBhbmFseXNlIG1hcmtldGluZyBjb21wbMOodGUgcGVybWV0IGRlICAN
+Cm1pZXV4IGNvbXByZW5kcmUgbGEgbG9naXF1ZSBldCBsZSBzdWNjw6hzIGR1IG1laWxsZXVyIGxh
+bmNlbWVudCBoaXN0b3JpcXVlICANCmQndW4gcGFyZnVtIGbDqW1pbmluIGVuIEZyYW5jZS4gTCdh
+bmFseXNlIGV4dGVybmUgZXQgaW50ZXJuZSBMJ2FuYWx5c2UgIA0KZXh0ZXJuZSBlc3QgY29uZHVp
+dGUgcGFyIGxlIGTDqXBhcnRlbWVudCBtYXJrZXRpbmcgZW4gY2hhcmdlIGRlIGxhICANCmNvbmNl
+cHRpb24gZGVzIG5vdXZlbGxlcyBmcmFncmFuY2VzLiBMZSBtYXJjaMOpIGRlcyBwYXJmdW1zIGVz
+dCBlc3RpbcOpIMOgICANCnBsdXMgZGUgNSBtaWxsaWFyZHMgZCdldXJvcyBlbiAyMDA5IGRvbnQg
+MS45IG1pbGxpYXJkcyBlbiBGcmFuY2UuIEVuIEZyYW5jZSAgDQpsYSBwYXJmdW1lcmllIHJlcHLD
+qXNlbnRlIDY1JSBkdSBtYXJjaMOpIGRlIGxhIGJlYXV0w6kgZW4gMjAwOSwgY2UgcXVpIGVuIGZh
+aXQgIA0KdW4gc2VjdGV1ciBzdHJhdMOpZ2lxdWUgZGFucyBsZXF1ZWwgaWwgZmF1dCBpbnZlc3Rp
+ci4gRW4gcGFyYWxsw6hsZSwgdW5lICANCsOpdHVkZSBkZXMgSW5zaWdodCBjb25zb21tYXRldXJz
+KHVuZSBvcGluaW9uLCB1biBjb21wb3J0ZW1lbnQpIGluZGlxdWUgcXVlLCAgDQpmYWNlIGF1IG1v
+bmRlIGFjdHVlbCwgb3UgdG91dCBlc3QgcGxhbmlmacOpLCBjYWxjdWzDqSwgb3JnYW5pc8OpLCBs
+ZXMgZmVtbWVzICANCmFzcGlyZW50IMOgIGxhaXNzZXIgcGFybGVyIGxldXIgaW50dWl0aW9uIGV0
+IGxldXIgw6ltb3Rpb25zLiBQYXIgYWlsbGV1cnMsICANCnVuZSDDqXR1ZGUgc3VyIGxhIHNlZ21l
+bnRhdGlvbiBvbGZhY3RpdmUgZGUgbCdvZmZyZSBkYW5zIGxhIHBhcmZ1bWVyaWUgbWV0ICANCmVu
+IGF2YW50IGxlIHBvaWRzIGltcG9ydGFudCBkYW5zIGxlcyBmcmFncmFuY2VzIGZsb3JhbGVzIHBy
+ZW1pZXIgc2VnbWVudCAgDQpvbGZhY3RpdmUgZGFucyB0b3VzIGxlcyBwYXlzIG1haXMgc291cyBy
+ZXByw6lzZW50w6kgY2hleiBHdWVybGFpbi4gTGVzICANCmZyYWdyYW5jZXMgZmxvcmFsZXMgcmVw
+csOpc2VudGVudCA3MCAlIGR1IG1hcmNow6kgZW4gUnVzc2llLCA2MSUgYXV4ICANCkV0YXRzLVVu
+aXMsIGNvbnRyZSBzZXVsZW1lbnQgMzElIGVuIEZyYW5jZSwgY2UgcXVpIGNvbnN0aXR1ZSB1biBy
+w6llbCAgDQpwb3RlbnRpZWwgZGUgY3JvaXNzYW5jZS4gUGFyY2UgcXVlIGNlIGxhbmNlbWVudCBl
+c3QgZGVzdGluw6kgw6AgY29uY3VycmVuY2VyICANCmxlIHRvcCAxMCBpbnRlcm5hdGlvbmFsIChu
+b3RhbW1lbnQsIEonYWRvcmUgZGUgRGlvciwgTWlzcyBEaW9yLCBOwrA1IGV0IENvY28gIA0KTWFk
+ZW1vaXNlbGxlIGRlIENoYW5lbCBvdSBGbG93ZXIgZGUgS2Vuem8pLCBvbiBhbmFseXNlIHNvaWdu
+ZXVzZW1lbnQgbGUgbWl4ICANCmV0IGxhIHN0cmF0w6lnaWUgZGUgY29uc3RydWN0aW9uIGRlIGdh
+bW1lIGRlIHNlcyBjb25jdXJyZW50cy4gQXUgcGxhbiBkZSAgDQpsJ2FuYWx5c2UgaW50ZXJuZSwg
+bGEgbWFycXVlIHNvdWhhaXRlIGNvbnN0cnVpcmUgdW4gcGlsaWVyIMOgICANCmwnaW50ZXJuYXRp
+b25hbCwgc29uIHBhcmZ1bSBwaGFyZS4gU2hhbGltYXIsIMOpdGFudCBzdXJ0b3V0IHBlcmZvcm1h
+bnQgZW4gIA0KRnJhbmNlLiBFbiAyMDA5IGwnaW5kdXN0cmllIGR1IGx1eGUgZXN0IHRvdWNow6ll
+IHBhciBsYSBjcmlzZSBldCBHdWVybGFpbiAgDQpjb21wcmVuZCBxdWUsIHBvdXIgZXhpc3RlciBz
+dXIgbGUgbWFyY2jDqSB0csOocyBjb25jdXJyZW50aWVsIGRlIGxhICANCnBhcmZ1bWVyaWUsIGwn
+ZW50cmVwcmlzZSBkb2l0IGNoYW5nZXIgZCfDqWNoZWxsZSB0b3V0IGVuIHZlaWxsYW50IMOgIG5l
+IHBhcyAgDQpjYXNzZXIgc2VzIGNvZGVzIGhpc3RvcmlxdWVzLiBFbGxlIHRpcmUgbGVzIGxlw6dv
+bnMgZGVzIGJpbGFucyBkZXMgIA0KcHLDqWPDqWRlbnRzIGxhbmNlbWVudHMgZGUgR3VlcmxhaW4s
+IEwnSW5zdGFudCwgSW5zb2xlbmNlIGV0IElkeWxsZSwgZW4gIA0KaWRlbnRpZmlhbnQgbGVzIHBv
+aW50cyBjbMOpcyBzdWl2YW50IDogUHJvcG9zZXIgdW4gbWl4IGZvcnRlbWVudCBwb3J0ZXVyIGRl
+ICANCmwnQUROIGRlIGxhIG1hcnF1ZSB0b3V0IGVuIGwnaW50ZXJuYXRpb25hbGlzYW50IGV0IGVu
+IHZlaWxsYW50IMOgIHJlY3J1dGVyICANCnVuZSBjaWJsZSBqZXVuZSwgZXQgc291dGVuaXIgbGEg
+bGlnbmUgZGUgcHJvZHVpdHMgZHVyYW50IHBsdXNpZXVycyBhbm7DqWVzICANCnBvdXIgY29uc3Ry
+dWlyZSB1biBwYXJmdW0gc29saWRlIGV0IHDDqXJlbm5lLiBEaWFnbm9zdGljIEEgbCdpc3N1ZSBk
+ZSBjZXR0ZSAgDQpwaGFzZSBkJ2FuYWx5c2UsIGxhIG1hcnF1ZSBHdWVybGFpbiBkw6ljaWRlIGRl
+IHB1aXNlciBkYW5zIHNvbiBwYXRyaW1vaW5lICANCnBvdXIgbWV0dHJlIGVuIMWTdXZyZSB1biBs
+YW5jZW1lbnQgYXVkYWNpZXV4LiBMYSBtYXJxdWUgcydpbnNwaXJlIGRlIGxhICANCnBoaWxvc29w
+aGllIGQnaW5ub3ZhdGlvbiBldCBkZSBjdWx0dXJlIGR1IGJlYXUgZGUgc29uIGZvbmRhdGV1ciAg
+DQpQaWVycmUtRnJhbsOnb2lzLVBhc2NhbCBHdWVybGFpbiwgcXVpIGRpc2FudCDDoCBzZXMgw6lx
+dWlwZSBlbiAxODI4IDogwqsgRmFpdGVzICANCmRlIGJvbiBwcm9kdWl0cywgbmUgY8OpZGV6IGph
+bWFpcyBzdXIgbGEgcXVhbGl0w6kuIFBvdXIgbGUgcmVzdGUgYXlleiBkZXMgIA0KaWTDqWVzIHNp
+bXBsZXMgZXQgYXBwbGlxdWV6LWxlcyBzY3J1cHVsZXVzZW1lbnQuIMK7IENoYXF1ZSBmYWNldHRl
+IGRlIGxhICANCmNyw6lhdGlvbiBlc3QgYWxvcnMgaW1hZ2luw6llIHBvdXIgw6p0cmUgaW5hdHRl
+bmR1ZSBldCBkaWZmw6lyZW50ZS4gSWwgcydhZ2l0ICANCmRlIHNlIGRpc3Rpbmd1ZXIgZGVzIGF1
+dHJlcyBmcmFncmFuY2VzIGR1IHBhdHJpbW9pbmUgR3VlcmxhaW4gdG91dCBlbiAgDQrDqWxhYm9y
+YW50IHVuZSBmcmFncmFuY2Ugc3VmZmlzYW1tZW50IGF0dHJhY3RpdmUgZXQgdW5pcXVlIGRlIHNv
+cnRlIMOgIHNlICANCmTDqW1hcnF1ZXIgZGUgbGEgY29uY3VycmVuY2UgaW50ZW5zZSwgY2FyYWN0
+w6lyaXN0aXF1ZSBkZSBjZSBtYXJjaMOpLiBDaWJsZSwgIA0KcG9zaXRpb25uZW1lbnQgZXQgb2Jq
+ZWN0aWZzIExlIGxhbmNlbWVudCBlc3QgY29uw6d1IHBvdXIgcGxhaXJlIMOgIHVuIG5vdXZlYXUg
+IA0KY8WTdXIgZGUgY2libGUsIGxlcyBqZXVuZXMgZmVtbWVzIGRlIDIwIMOgIDMwIGFucywgw6ls
+b2lnbsOpZXMgZGUgbCd1bml2ZXJzICANCnByZW1pZXIgZGVzIGNsaWVudMOobGVzIGZpZMOobGVz
+IGRlcyBwYXJmdW1zIEd1ZXJsYWluLiBMZSBwb3NpdGlvbm5lbWVudCBlc3QgIA0KY29uc3RydWl0
+IGF1dG91ciBkdSBwYXRyaW1vaW5lIGRlIGxhIG1hcnF1ZSwgcmV2aXNpdMOpIGF2ZWMgdW4gcmVn
+YXJkIG5ldWYgIA0KcG91ciBzw6lkdWlyZSBjZXR0ZSBub3V2ZWxsZSBjbGllbnTDqGxlLiBBIGNv
+bXB0ZS1jb3VyYW50IGRlcyBwcmF0aXF1ZXMgZHUgIA0Kc2VjdGV1ciwgaWwgZXN0IGTDqWNpZMOp
+IGRlIG5lIHBhcyBmYWlyZSBhcHBlbCDDoCB1bmUgw6lnw6lyaWUuIEd1ZXJsYWluICANCnNvdWhh
+aXRlIHJlbXBsYWNlciB1biB2aXNhZ2UgcGFyIHVuZSBhdHRpdHVkZSBldCB1bmUgdmlzaW9uIGR1
+IG1vbmRlLiAgDQpEZXJyacOocmUgTGEgcGV0aXRlIFJvYmUgTm9pcmUgc2UgY2FjaGUgdW5lIHBh
+cmlzaWVubmUgcsOqdsOpZSwgZG90w6llIGQndW5lICANCnBlcnNvbm5hbGl0w6kgam95ZXVzZSwg
+dW4gYnJpbiBpbnNvbGVudGUgZXQgbXV0aW5lLiBFbiB0ZXJtZXMgZCdvYmplY3RpZnMsICANCkd1
+ZXJsYWluIHNvdWhhaXRlIGNyw6llciB1bmUgbm91dmVsbGUgaW1hZ2UgZXQgYsOpbsOpZmljaWVy
+IGQndW5lIG5vdG9yacOpdMOpICANCnJlbmZvcmPDqWUuIElsIHMnYWdpdCDDqWdhbGVtZW50IGQn
+aW5zdGFsbGVyIGxhIG1hcnF1ZSBkYW5zIGxlIHRvcCAzIGZyYW7Dp2FpcyAgDQpldCBsZSB0b3Ag
+MTAgbW9uZGlhbCBJbCBlc3QgZMOpY2lkw6kgZGUgY29uY2VudHJlciBkJ2Fib3JkIGxlcyBtb3ll
+bnMgZGUgIA0KRnJhbmNlIGVuIG1hcnMgMjAxMiBwdWlzIMOgIGwnaW50ZXJuYXRpb25hbCBlbiBq
+dWlsbGV0IGRlIGxhIG3Dqm1lIGFubsOpZS4gTGUgIA0KUHJvZHVpdCBMZSBwYXJmdW0gZXN0IG5v
+bW3DqSBMYSBwZXRpdGUgUm9iZSBOb2lyZSwgZW4gaG9tbWFnZSDDoCBsYSBwacOoY2UgIA0KbWFp
+dHJlc3NlLCBjaGljIGV0IGludGVtcG9yZWwsIGR1IGRyZXNzaW5nIGbDqW1pbmluLiBHdWVybGFp
+biBzZSByYXBwcm9jaGUgIA0KYWluc2kgZGUgbCd1bml2ZXJzIGRlIGxhIG1vZGUgZW4gcydhdHRy
+aWJ1YW50IGxlIG15dGhlIGRlIGwnw6l0ZXJuZWwgIA0KZsOpbWluaW4uIExlIFBhcmZ1bSBlc3Qg
+cmV2aXNpdMOpIGF1dG91ciBkJ2luZ3LDqWRpZW50cyBhdWRhY2lldXNlbWVudCAgDQpzdXJkb3PD
+qXMgcG91ciBsdWkgZG9ubmVyIHVuZSBub3RlIHNlbnN1ZWxsZSwgZMOpbGljYXRlIGV0IHVsdHJh
+IGbDqW1pbmluZS4gIA0KVGhpZXJyeSBXYXNzZXIgY2hvaXNpdCBkZXMgbm90ZXMgZGUgdMOodGUg
+Z291cm1hbmRlcywgY29tbWUgbGEgY2VyaXNlIG5vaXJlICANCmV0IGxhIGJlcmdhbW90ZSBwdWlz
+IGxhIHJvc2Ugbm9pcmUgcG91ciBsYSBub3RlIGRlIGPFk3VyIGV0LCBlbmZpbiwgZGVzICANCm5v
+dGVzIGRlIGZvbmRzIGFkZGljdGl2ZXMgY29tbWUgbGUgdGhlIGZ1bcOpIGV0IGxlIHBhdGNob3Vs
+aS4gUXVhbnQgYXUgIA0KZmxhY29uLCBHdWVybGFpbiBvcHRlIHBvdXIgdW4gb2JqZXQgaGlzdG9y
+aXF1ZSBkZSBsYSBtYWlzb24sIGNlbHVpIGRlICANCkwnSGV1cmUgQmxldWUsIGNyw6nDqSBlbiAx
+OTEyIHVuIGZsYWNvbiBlbiB2ZXJyZSBkb3TDqSBkJ3VuIGJvdWNob24gZW4gY8WTdXIgIA0KaW52
+ZXJzw6kgZXQgdW4gZMOpZ3JhZMOpIGRlIHJvc2VzLiBMZSBjb25jZXB0IGV0IGxlIGZsYWNvbiBz
+b250IHByw6lzZW50w6lzIMOgIHVuICANCnBhbmVsIGRlIGZlbW1lcyBwb3VyIG1pZXV4IGNvbXBy
+ZW5kcmUgbGV1cnMgcmVzc2VudGlzIGV0IGxldXJzIHByb2plY3Rpb25zLiAgDQpMYSBjb21tdW5p
+Y2F0aW9uIHByZW5kIGxlIGNvbnRyZXBpZWQgZGVzIGNvZGVzIGhhYml0dWVscyBkdSBtYXJjaMOp
+LiAgDQpHdWVybGFpbiBkZSBmYWl0IHBhcyBhcHBlbCDDoCB1bmUgw6lnw6lyaWUsIG1haXMgw6Ag
+dW5lIHNpbGhvdWV0dGUgIA0Kc29waGlzdGlxdcOpZSwgY3JvcXXDqWUgcGFyIGxlIGR1byBkZSBj
+csOpYXRldXJzIGV0IGdyYXBoaXN0ZXMsIEt1bnR6ZWwgZXQgIA0KRGV5Z2FzLiBFbGxlIGZhaXQg
+ZGUgUGFyaXMgc29uIHRlcnJhaW4gZGUgamV1IGF1IHNvbiBkdSBtb3JjZWF1IG15dGhpcXVlIGRl
+ICANCk5hbmN5IFNpbmF0cmEsIFRoaXMgQm9vdHMgYXJlIG1hZGUgZm9yIHdhbGtpbmcuIExhIFBl
+dGl0ZSBSb2JlIE5vaXJlIMOpdm9sdWUgIA0KZGFucyB1bmUgbWlzZSBlbiBzY8OobmUgdW5pcXVl
+IGF1eCBmcm9udGnDqHJlcyBkdSBwYXJmdW0gZXQgZGUgbGEgbW9kZS4gTGUgIA0KTGFuY2VtZW50
+IExlIHBsYW4gZGUgbGFuY2VtZW50IGRvaXQgYmllbiBzw7tyIGRvbm5lciBjb3JwcyDDoCBsJ3Vu
+aXZlcnMgZHUgIA0KcHJvZHVpdCwgbWFpcyDDqWdhbGVtZW50LCB0cmF2YWlsbGVyIGxhIHZpc2li
+aWxpdMOpIGV0IGxhIGRpZmbDqXJlbmNpYXRpb24gcGFyICANCnJhcHBvcnQgYXV4IGNvbmN1cnJl
+bnRzLiBEZXV4IGZvcm1hdHMgb250IMOpdMOpIGxhbmPDqXMgOiBsZSAzMCBtbCwgYWZpbiBkZSAg
+DQpwcm9wb3NlciB1biBwcml4IGQnYXBwZWwgaW5mw6lyaWV1ciDDoCA2MCDigqwsIGV0IGxlIDUw
+IG1sLiBMYSBkaXN0cmlidXRpb24gYSAgDQpsaWV1IGRhbnMgbGVzIGJvdXRpcXVlcyBHdWVybGFp
+biwgbGVzIHBhcmZ1bWVyaWVzIHPDqWxlY3RpdmVzIGV0IGxlcyBncmFuZHMgIA0KbWFnYXNpbnMu
+IExlcyDDqWzDqW1lbnRzIG1hcmNoYW5kaXNpbmcgZXQgbGVzIGd1aWRlcyBlbnZvecOpcyBhdXgg
+ZmlsaWFsZXMgIA0KY29udGllbm5lbnQgbCdlbnNlbWJsZSBkZXMgZMOpY2xpbmFpc29ucyBwb3Nz
+aWJsZXMgZW4gZm9uY3Rpb24gZGVzICANCmNhcmFjdMOpcmlzdGlxdWVzIGRlcyBwb2ludHMgZGUg
+dmVudGUgZXQgZGVzIMOpdsOpbmVtZW50cyBvcmdhbmlzw6lzICANCmxvY2FsZW1lbnQuIExhIGNh
+bXBhZ25lIGRlIHJlbGF0aW9ucyBwcmVzc2VzIG1ldCBlbiBhdmFudCBsJ2Vuc2VtYmxlIGRlcyAg
+DQphY3RldXJzIGF5YW50IHBhcnRpY2lww6lzIMOgIGxhIGNvbmNlcHRpb24gZHUgcGFyZnVtIChw
+YXJmdW1ldXJzLCBkZXNpZ25lcnMpLiAgDQpMYSBjYW1wYWduZSBkZSBsYW5jZW1lbnQgZMOpY2xp
+bmUgbCdhdWRhY2UgY3LDqWF0aXZlIGRlIGNldHRlIG5vdXZlbGxlICANCmZyYWdyYW5jZSBzdXIg
+dG91cyBsZXMgc3VwcG9ydHMuIExhIG1hcnF1ZSBhIGQnYWJvcmQgcHJpcyBsZSBjb250cmVwaWVk
+IGRlcyAgDQpwcmF0aXF1ZXMgZW4gRnJhbmNlIGVuIGxhbsOnYW50IHNvbiBwYXJmdW0gbm9uIHBh
+cyBlbiBTZXB0ZW1icmUgZW4gcHLDqXZpc2lvbiAgDQpkZSBOb8OrbCwgbWFpcyBlbiBNYXJzLCBw
+w6lyaW9kZSBoYWJpdHVlbGxlbWVudCBjcmV1c2UgZGFucyBsYSBwYXJmdW1lcmllLCAgDQpzaXR1
+w6llIGFwcsOocyBsYSBTYWludCBWYWxlbnRpbiBldCBhdmFudCBsYSBmw6p0ZSBkZXMgbcOocmVz
+LiBMYSBtYXJxdWUgYSAgDQphdXNzaSBjcsOpw6kgbGUgYnV6eiBhdmVjIHVuZSBhdmFudCBwcmVt
+acOocmUgw6AgbGEgRmFzaGlvbiBXZWVrIHBhcmlzaWVubmUsICANCnB1aXMgdW5lIGNhbXBhZ25l
+IGRlIHN0cmVldCBtYXJrZXRpbmcgYXZlYyBkZXMgc2lsaG91ZXR0ZXMgZGUgMW04MCBwbGFjw6ll
+cyAgDQpkYW5zIDUgZ3JhbmRlcyB2aWxsZXMgZnJhbsOnYWlzZXMgZXQgdW4gZW1wbGFjZW1lbnQg
+c3VyIGxlcyBjb2xvbm5lcyBNb3JyaXMgIA0KaGFiaXR1ZWxsZW1lbnQgcsOpc2VydsOpZXMgw6Ag
+bGEgY3VsdHVyZS4gVW5lIGNhbXBhZ25lIGRpZ2l0YWxlIGEgw6lnYWxlbWVudCAgDQrDqXTDqSBt
+ZW7DqWUgYXZlYyB1biB0ZWFzaW5nIHN1ciBGYWNlYm9vaywgbGEgcHLDqXNlbmNlIHN1ciBsZSBi
+YW5kZWF1ICANCmQnYWNjdWVpbCBkZSBsYSBwYWdlIFlvdSBUdWJlLCBsJ2hhYmlsbGFnZSBkZXMg
+Z3JhbmRzIHNpdGVzIHdlYiBmw6ltaW5pbnMgIA0KY29tbWUgY2VsdWkgZHUgbWFnYXppbmUgRWxs
+ZS4gTGUgZmlsbSBwdWJsaWNpdGFpcmUgZGUgNDUgc2Vjb25kZSBhICANCmLDqW7DqWZpY2nDqSBk
+J3VuZSBzb2lyw6llIMOpdsOpbmVtZW50aWVsbGUgc3VyIFRGMSwgRnJhbmNlMiwgQ2FuYWwgKyBl
+dCBNNiwgIA0Kc3VpdmkgZGUgMyBzZW1haW5lcyBkZSBkaWZmdXNpb24gdHJhZGl0aW9ubmVsbGUu
+IENldHRlIHN0cmF0w6lnaWUgZGUgIA0KY29tbXVuaWNhdGlvbiDDoCAzNjDCsCBhIMOpdMOpIGNv
+bXBsw6l0w6llIHBhciBkZXMgZW5jYXJ0cyBwcmVzc2VzIGV0IGRlcyAgDQpwdWJsaWNpdMOpcyBl
+biBzaW1wbGVzIGV0IGRvdWJsZXMgcGFnZXMuIExlcyBSw6lzdWx0YXRzIExlIGxhbmNlbWVudCBh
+IMOpdMOpIHVuICANCnbDqXJpdGFibGUgc3VjY8Oocy4gTGEgcGV0aXRlIFJvYmUgTm9pcmUgYSBy
+w6lhbGlzw6kgdW4gQ0EgZGUgNDAgTeKCrCBlbiAyMDEyLiBFbiAgDQozIG1vaXMsIGVsbGUgYSBk
+w6lwYXNzw6kgbGEgYmFycmUgc3ltYm9saXF1ZSBkdSBtaWxsaW9uIGRlIGZsYWNvbnMgdmVuZHVz
+IGV0ICANCnMnZXN0IHBsYWPDqWUgZW4gMmVtZSBwb3NpdGlvbiBkZXMgcGFyZnVtcyBmw6ltaW5p
+bnMgZW4gRnJhbmNlLiBFbGxlIGEgcmXDp3UgIA0KZGUgbm9tYnJldXggcHJpeCwgZG9udCBjZWx1
+aSBkZSBsYSBtZWlsbGV1cmUgY29tbXVuaWNhdGlvbiBnbG9iYWxlLCBhaW5zaSAgDQpxdWUgdG91
+cyBsZXMgcHJpeCBkZSBzYSBjYXTDqWdvcmllIGF1eCBGaUZpIEF3YXJkcyAoRnJhZ3JhbmNlIEZv
+bmRhdGlvbiAgDQpGcmFuw6dhaXNlKS4gR3VlcmxhaW4gYSBkZXB1aXMgY29udGludcOpIMOgIHNv
+dXRlbmlyIGxlIHBhcmZ1bSBhdmVjIHBsdXNpZXVycyAgDQpkw6ljbGluYWlzb25zIDogbCdlYXUg
+ZGUgdG9pbGV0dGUgZW4gMjAxMywgbCdlYXUgZnJhaWNoZSBlbiAyMDE1IGF2ZWMgdW4ganVzICAN
+CnZlcnQgdGVuZHJlLCBsYSB2ZXJzaW9uIMKrIGJsYWNrIFBlcmZlY3RvIMK7LCBwbHVzIGZsb3Jh
+bGUsIGVuIDIwMTcsIHB1aXMgIA0KbCdlYXUgZGUgcGFyZnVtIGzDqWfDqHJlIGVuIDIwMTguIFVu
+ZSBnYW1tZSBkZSBtYXF1aWxsYWdlIGF2ZWMgdW4gcm91Z2Ugw6AgIA0KbMOodnJlcyBldCB1biB2
+ZXJuaXMgw6Agb25nbGVzIGEgw6lnYWxlbWVudCDDqXTDqSBjcsOpw6kuDQoNCg0KMS4gQ2xhc3Nl
+eiBsZXMgw6lsw6ltZW50cyBkZSBsJ2FuYWx5c2Ugc291cyBmb3JtZSBkZSBmb3JjZXMsIGZhaWJs
+ZXNzZXMsICANCm9wcG9ydHVuaXTDqXMgZXQgbWVuYWNlcy4NCg0KDQoxLiBDbGFzc2V6IGxlcyDD
+qWzDqW1lbnRzIGRlIGwnYW5hbHlzZSBzb3VzIGZvcm1lIGRlIGZvcmNlcywgZmFpYmxlc3Nlcywg
+IA0Kb3Bwb3J0dW5pdMOpcyBldCBtZW5hY2VzLiBMZSBTV09UIGVzdCB1bmUgbcOpdGhvZGUgZCdh
+bmFseXNlIHF1aSBwZXJtZXQgYXV4ICANCmVudHJlcHJpc2VzLCB1biBkw6l2ZWxvcHBlbWVudCBn
+w6luw6lyYWwsIGVuIGNyb2lzYW50IGRlcyBkb25uw6llcyBpbnRlcm5lcyBldCAgDQpkZXMgZG9u
+bsOpZXMgZXh0ZXJuZXMuIGxlcyBkb25uw6llcyBpbnRlcm5lcyBzb250IGxlcyBwb2ludHMgZm9y
+dHMgZXQgbGVzICANCmZhaWJsZXNzZXMgZGUgbCdlbnRyZXByaXNlIHRhbmRpcyBxdWUgbGVzIGRv
+bm7DqWVzIGV4dGVybmVzIHJlcHLDqXNlbnRlbnQgbGVzICANCm9wcG9ydHVuaXTDqXMgZXQgbGVz
+IG1lbmFjZXMuIENpLWRlc3NvdXMgbGUgU1dPVCBzdXIgbCdhbmFseXNlIGRlIEd1ZXJsYWluLiAg
+DQpGb3JjZTogLWxhIHBldGl0ZSByb2JlIG5vaXJlIGRlIEd1ZXJsYWluIGVzdCB1bmUgZnJhZ3Jh
+bmNlIHF1aSBzw6lkdWl0ICANCnJhcGlkZW1lbnQgc2VzIGNsaWVudHMgLWxlIG1hcmNow6kgZGVz
+IHBhcmZ1bXMgZXN0IGVzdGltw6kgw6AgMS45IG1pbGxpYXJkcyBlbiAgDQpGcmFuY2UgZXQgcmVw
+csOpc2VudGUgNjUlIGR1IG1hcmNow6kgZGUgbGEgYmVhdXTDqSBlbiBGcmFuY2UuIENlIHNvbnQg
+ZGVzICANCnBhcnRzIGltcG9ydGFudGVzIHF1ZSBjZSBzb2l0IGF1IG5pdmVhdSBpbnRlcm5hdGlv
+bmFsIGV0IGF1IG5pdmVhdSBuYXRpb25hbCAgDQotbGUgdG9wIDEwIGRlcyBwYXJmdW1zIGbDqW1p
+bmlucyBwbHVzIGRlIDEwIGFucyBhcHLDqHMgLWxhIGNhbXBhZ25lIGRlICANCmxhbmNlbWVudCBk
+dSBwcm9kdWl0IGEgZXUgbGlldSBlbiBNYXJzLCBww6lyaW9kZSBjcmV1c2Ugb8O5IG9uIG4nYSBw
+YXMgIA0KaGFiaXR1ZWxsZW1lbnQgZGUgY2FtcGFnbmVzIGRlIGNlIGdlbnJlIC0gMmVtZSBwb3Np
+dGlvbiBkZXMgcGFyZnVtcyAgDQpmw6ltaW5pbnMgZW4gRnJhbmNlIC1sYSBmcmFncmFuY2UgYSBy
+ZcOndSBsYSBtZWlsbGV1cmUgY29tbXVuaWNhdGlvbiBnbG9iYWxlLCAgDQphaW5zaSBxdWUgdG91
+cyBsZXMgcHJpeCBkZSBzYSBjYXTDqWdvcmllIGF1eCBGaUZpIEF3YXJkcyAtY3LDqWF0aW9uIGRl
+IGxhICANCmdhbW1lIGxhIHBldGl0ZSByb2JlIG5vaXJlIC0gbGUgdG9wIDEwIG1vbmRpYWwgLWNh
+bXBhZ25lIHB1YmxpY2l0YWlyZSB0csOocyAgDQpzdHJhdMOpZ2lxdWUgRmFpYmxlc3NlOiAtdW5l
+IHNvdXMgcmVwcsOpc2VudGF0aW9uIGRlcyBmcmFncmFuY2VzIGZsb3JhbGVzICANCmNoZXogR3Vl
+cmxhaW4gLWxlcyBmcmFncmFuY2VzIGZsb3JhbGVzIHJlcHLDqXNlbnRlbnQgc2V1bGVtZW50IDMx
+JSBkdSBtYXJjaMOpICANCmVuIEZyYW5jZSAtw6Agdm91bG9pciBzw6lkdWlyZSB1bmUgY2xpZW50
+w6hsZSDDoCBsJ2ludGVybmF0aW9uYWxlLCBHdWVybGFpbiAgDQpyaXNxdWUgZGUgY2Fzc2VyIHNl
+cyBlbXByZWludGVzIGhpc3RvcmlxdWVzIC1sYSBmcmFncmFuY2UgZXN0IHRyw6hzIHBldSAgDQpj
+aWJsw6llIGV0IGNvbmNlcm5lIHVuaXF1ZW1lbnQgbGVzIDIwLTMwIGFucyBPcHBvcnR1bml0w6k6
+IC1sYSBwYXJmdW1lcmllICANCmMnZXN0IHVuIHNlY3RldXIgZGFucyBsZXF1ZWwgaWwgZXN0IGp1
+ZGljaWV1eCBkJ2ludmVzdGlyIC1jb21tZXJjaWFsaXNlciBsYSAgDQpwZXRpdGUgcm9iZSBub2ly
+ZSDDoCBsJ2ludGVybmF0aW9uYWxlIC1sYSBwb3NzaWJpbGl0w6kgZGUgdG91Y2hlciBwbHVzIGRl
+ICANCmpldW5lcyBNZW5hY2VzOiAtbGVzIGZyYWdyYW5jZSBmbG9yYWxlcyBzb250IHBsdXMgcmVw
+csOpc2VudMOpZXMgw6AgIA0KbCdpbnRlcm5hdGlvbmFsZSBhdmVjIDcwJSBkdSBtYXJjaMOpLCBl
+biBSdXNzaWUsIDYxJSBhdXggRXRhdHMtVW5pcywgY29udHJlICANCnNldWxlbWVudCAzMSUgZW4g
+RnJhbmNlDQoNCg0KMi4gQW5hbHlzZXogY29tbWVudCBlc3QgY29uc3RydWl0ZSBsYSB2YWxldXIg
+b2ZmZXJ0ZSBhdXggY2xpZW50cyBkZSBMYSAgDQpwZXRpdGUgUm9iZSBOb2lyZSBldCBpZGVudGlm
+aWV6IHN1ciBxdWVsbGVzIGNvbXDDqXRlbmNlcyBzJ2FwcHVpZSBHdWVybGFpbiAgDQpwb3VyIGxh
+IHByb3Bvc2VyLg0KDQoNCjIuIEFuYWx5c2V6IGNvbW1lbnQgZXN0IGNvbnN0cnVpdGUgbGEgdmFs
+ZXVyIG9mZmVydGUgYXV4IGNsaWVudHMgZGUgTGEgIA0KcGV0aXRlIFJvYmUgTm9pcmUgZXQgaWRl
+bnRpZmlleiBzdXIgcXVlbGxlcyBjb21ww6l0ZW5jZXMgcydhcHB1aWUgR3VlcmxhaW4gIA0KcG91
+ciBsYSBwcm9wb3Nlci4gVG91dCBkJ2Fib3JkIGxhIHZhbGV1ciBvZmZlcnRlIGMnZXN0IHVuIHBy
+b3Bvc2l0aW9uICANCnN0cmF0w6lnaXF1ZSBxdWkgcmVwcsOpc2VudGUgbGUgZ2FpbiBwZXLDp3Ug
+cGFyIGxlIGNsaWVudCBlbiDDqWNoYW5nZSBkJ3VuIGNvw7t0ICANCnZlcnNlci4gSWNpIGxhIG1h
+cnF1ZSBzJ2VzdCBpbnNwaXLDqWUgZGUgZGUgc29uIGZvbmRhdGV1ciAgDQpQaWVycmUtRnJhbsOn
+b2lzLVBhc2NhbCBHdWVybGFpbiBxdWkgZGlzYWl0ICIgRmFpdGVzIGRlIGJvbiBwcm9kdWl0cywg
+bmUgIA0KY8OpZGV6IGphbWFpcyBzdXIgbGEgcXVhbGl0w6kuIFBvdXIgbGUgcmVzdGUgYXlleiBk
+ZXMgaWTDqWVzIHNpbXBsZXMgZXQgIA0KYXBwbGlxdWV6LWxlcyBzY3J1cHVsZXVzZW1lbnQiIHBv
+dXIgcHJvcG9zZXIgw6Agc2VzIGNsaWVudCB1bmUgZnJhZ3JhbmNlICANCnNpbXBsZSwgZGUgYm9u
+bmUgcXVhbGl0w6ksIGF0dHJhY3RpdmUsIHVuaXF1ZSwgZMOpbGljYXRlLCBzZW5zdWVsbGUgZXQg
+dWx0cmEgIA0KZmVtaW5pbmUuIEV0IHBvdXIgc2UgZmFpcmUsIFRoaWVycnkgV2Fzc2VyIGEgY2hv
+aXNpIGRlIHRyYXZhaWxsZXIgYXZlYyBkZXMgIA0Kbm90ZXMgZGUgdMOodGUgZ291cm1hbmRlcywg
+Y29tbWUgbGEgY2VyaXNlIG5vaXJlIGV0IGxhIGJlcmdhbW90ZSBwdWlzIGxhICANCnJvc2Ugbm9p
+cmUgcG91ciBsYSBub3RlIGRlIGPFk3VyIGV0LCBlbmZpbiwgZGVzIG5vdGVzIGRlIGZvbmRzIGFk
+ZGljdGl2ZXMgIA0KY29tbWUgbGUgdGhlIGZ1bcOpIGV0IGxlIHBhdGNob3VsaS4gUG91ciBsZSBm
+bGFjb24sIEd1ZXJsYWluIGNob2lzaXQgY2VsdWkgIA0KZGUgTCdIZXVyZSBCbGV1ZSwgY3LDqcOp
+IGVuIDE5MTIgdW4gZmxhY29uIGVuIHZlcnJlIGRvdMOpIGQndW4gYm91Y2hvbiBlbiBjxZN1ciAg
+DQppbnZlcnPDqSBldCB1biBkw6lncmFkw6kgZGUgcm9zZXMuDQoNCg0KMy4gSWRlbnRpZmlleiBs
+ZXMgaW5kaWNhdGV1cnMgdXRpbGlzw6lzIHBhciBHdWVybGFpbiBwb3VyIG1lc3VyZXIgbGUgc3Vj
+Y8OocyAgDQpkZSBzb24gcGxhbiBtYXJrZXRpbmcuIFF1ZWxzIGF1dHJlcyBpbmRpY2F0ZXVycyBw
+ZXV2ZW50IMOqdHJlIG1vYmlsaXPDqXMgPyAgDQpQb3VycXVvaSA/DQoNCg0KMy4gSWRlbnRpZmll
+eiBsZXMgaW5kaWNhdGV1cnMgdXRpbGlzw6lzIHBhciBHdWVybGFpbiBwb3VyIG1lc3VyZXIgbGUg
+c3VjY8OocyAgDQpkZSBzb24gcGxhbiBtYXJrZXRpbmcuIFF1ZWxzIGF1dHJlcyBpbmRpY2F0ZXVy
+cyBwZXV2ZW50IMOqdHJlIG1vYmlsaXPDqXMgPyAgDQpQb3VycXVvaSA/IGxlcyBpbmRpY2F0ZXVy
+cyB1dGlsaXPDqXMgcGFyIEd1ZXJsYWluIHBvdXIgbWVzdXJlciBsZSBzdWNjw6hzIGRlICANCnNv
+biBwbGFuIG1hcmtldGluZyBzb250OiAtZGVzIGZhY3RldXJzIGJhc8OpcyBzdXIgZGVzIGRvbm7D
+qWVzIGludGVybmVzICANCm5vdGFtbWVudCBsZSBjaGlmZnJlIGQnYWZmYWlyZSBkZSA0MCBNIGQn
+ZXVybyBlbiAyMDEyIGF2ZWMgMSBtaWxsaW9uIGRlICANCmZsYWNvbnMgdmVuZHVzLiAtR3Vlcmxh
+aW4gYSDDqWdhbGVtZW50IHJlw6d1IGRlcyBwcml4IHBhciBleGVtcGxlIGxlIHByaXggZGUgIA0K
+bGEgbWVpbGxldXJlIGNvbW11bmljYXRpb24gZ2xvYmFsZSwgYWluc2kgcXVlIHRvdXMgbGVzIHBy
+aXggZGUgc2EgY2F0w6lnb3JpZSAgDQphdXggRmlGaSBBd2FyZHMgKEZyYWdyYW5jZSBGb25kYXRp
+b24gRnJhbsOnYWlzZSkuIFBhciBhaWxsZXVycyBHdWVybGFpbiAgDQpwb3VycmFpdCBkw6l2ZWxv
+cHBlciB1bmUgY29tcHLDqWhlbnNpb24gZmluZSBkZXMgY2xpZW50cyBhZmluIGRlIG1ldHRyZSBl
+biAgDQpwbGFjZSB1bmUgc2VnbWVudGF0aW9uIGRlcyBjbGllbnRzIGVuIGZvbmN0aW9uIGRlIGxl
+dXIgc2F0aXNmYWN0aW9uIGFpbnNpICANCm9idGVuaXIgdW5lIG5vdGUgZGUgc2F0aXNmYWN0aW9u
+IHF1aSB1bmUgZm9pcyBwb3NpdGl2ZSBwb3VycmFpdCBwYXJ0aWNpcGVyICANCmF1eCBpbmRpY2F0
+ZXVycyBjbGVmIGRlIHN1Y2PDqHMgZHUgbWFya2V0aW5nIGRlIEd1ZXJsYWluLg0KDQoNCjQuIFF1
+ZWxsZXMgcmVjb21tYW5kYXRpb25zIGZvcm11bGVyaWV6LXZvdXMgw6AgbCdhdHRlbnRpb24gZGUg
+R3VlcmxhaW4gcG91ciAgDQpsdWkgcGVybWV0dHJlIGQnYXNzdXJlciBsZSBkw6l2ZWxvcHBlbWVu
+dCBldCBsYSBjcm9pc3NhbmNlIGRlIExhIHBldGl0ZSBSb2JlICANCk5vaXJlIHBvdXIgbGVzIHBy
+b2NoYWluZXMgYW5uw6llcyA/DQoNCg0KNC4gUXVlbGxlcyByZWNvbW1hbmRhdGlvbnMgZm9ybXVs
+ZXJpZXotdm91cyDDoCBsJ2F0dGVudGlvbiBkZSBHdWVybGFpbiBwb3VyICANCmx1aSBwZXJtZXR0
+cmUgZCdhc3N1cmVyIGxlIGTDqXZlbG9wcGVtZW50IGV0IGxhIGNyb2lzc2FuY2UgZGUgTGEgcGV0
+aXRlIFJvYmUgIA0KTm9pcmUgcG91ciBsZXMgcHJvY2hhaW5lcyBhbm7DqWVzID8gw4l0YW50IGRv
+bm7DqSBxdWUgR3VlcmxhaW4gZXN0ICANCnNvdXMtcmVwcsOpc2VudMOpIGRhbnMgbGEgZmFicmlj
+YXRpb24gZGVzIGZyYWdyYW5jZXMgZmxvcmFsZXMgKDMxJSBkdSBtYXJjaMOpICANCmNvbnRyZSA3
+MCUgZW4gUnVzc2llIHBhciBleGVtcGxlKSwgbGEgbWFycXVlIGRldnJhaXQgc2UgbGFuY2VyIGRh
+bnMgdW5lICANCnZlcnNpb24gdHLDqHMgZmxvcmFsZSBjZSBxdWkgcG91cnJhaXQgY3LDqWVyIGRl
+IGxhIGNyb2lzc2FuY2UgZXQgYXR0aXJlciB1bmUgIA0KY2xpZW50w6hsZSDDoCBsJ2ludGVybmF0
+aW9uYWxlLiBMYSBtYXJxdWUgcG91cnJhaXQgYXVzc2kgcHJvcG9zZXIgZGl2ZXJzZXMgIA0KYXV0
+cmVzIHZlcnNpb24gZGUgbGEgZnJhZ3JhbmNlIGFmaW4gZGUgdG91Y2hlciB0b3VzIGxlcyDDomdl
+cyBvdXRyZSBxdWUgbGEgIA0KdHJhbmNoZSBkZXMgMjAtMzAgYW5zLg0KDQoNCkNyw6llciB2b3Ry
+ZSBwcm9wcmUgZm9ybXVsYWlyZSBHb29nbGUNCg0KU2lnbmFsZXIgdW4gY2FzIGQndXRpbGlzYXRp
+b24gYWJ1c2l2ZQ0KDQoNCg==
+--000000000000c7f6fd05d6df0ad2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><style nonce=3D"lldjLEwcx3lkZN9mL7QRCQ">@import url(https://fon=
+ts.googleapis.com/css?family=3DGoogle+Sans_old:400,500|Roboto:300,400,400i,=
+500,700&subset=3Dlatin,vietnamese,latin-ext,cyrillic,greek,cyrillic-ext,gre=
+ek-ext);</style><style nonce=3D"lldjLEwcx3lkZN9mL7QRCQ">[class=3D"x_body-co=
+ntent-wrapper"] * {white-space: normal !important;}</style></head><body dir=
+=3D"ltr" style=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-s=
+erif;font-size: 14px; font-weight: 400; line-height: 20px;text-align: start=
+; word-wrap: break-word; margin: 0; padding: 0; height: 100%; width: 100%;"=
+><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"backgroun=
+d-color:rgb(93,60,171);" width=3D"100%" role=3D"presentation"><tbody><tr he=
+ight=3D"64px"><td style=3D"padding: 0 24px;"><img alt=3D"Google=C2=A0Forms"=
+ height=3D"26px" style=3D"display: inline-block; margin: 0; vertical-align:=
+ middle;" width=3D"143px" src=3D"https://www.gstatic.com/docs/forms/google_=
+forms_logo_lockup_white_2x.png"></td></tr></tbody></table><div class=3D"bod=
+y-content-wrapper" style=3D"padding: 12px; background-color: rgb(239,236,24=
+7);"><div style=3D"margin: 0 auto; max-width: 640px; min-width: 154px;"><di=
+v style=3D"border: 1px solid #dadce0; padding: 20px 12px;background-color: =
+#fff; border-radius: 8px; margin-bottom: 12px;padding: 20px;"><h1 style=3D"=
+color: #202124;font-family: &#39;Google Sans&#39;,Roboto,Helvetica,Arial,sa=
+ns-serif;font-size: 20px; font-weight: 400; line-height: 28px;margin: 0 0 1=
+2px;">Merci d'avoir rempli le formulaire <a href=3D"https://docs.google.com=
+/forms/d/e/1FAIpQLSeGl0QzH55HCLaSSYWXEjO7Hu7qUFvbH6_5xXCDKp9zVOkxdw/viewfor=
+m?embedded=3Dtrue&amp;usp=3Dmail_form_link" target=3D"_blank" style=3D"whit=
+e-space: pre-wrap;">MARKETING STRATEGIQUE - Etude de cas</a></h1>Voici ce q=
+ui a =C3=A9t=C3=A9 re=C3=A7u.</div><div style=3D"border-bottom: 1px solid #=
+dadce0; border-left: 1px solid #dadce0; border-right: 1px solid #dadce0; bo=
+rder-top: 8px solid rgb(93,60,171); padding: 20px;background-color: #fff; b=
+order-radius: 8px; margin-bottom: 12px;"><h1 dir=3D"ltr" style=3D"font-fami=
+ly: &#39;Google Sans&#39;,Roboto,Helvetica,Arial,sans-serif;font-size: 32px=
+; font-weight: 400; line-height: 42px;white-space: pre-wrap;margin: 0 0 12p=
+x;">MARKETING STRATEGIQUE - Etude de cas</h1><div style=3D"white-space: pre=
+-wrap;margin-bottom: 12px;">3h
+
+Aucun document n&#39;est autoris=C3=A9.
+
+Merci de bien vouloir conserver une copie de votre partiel et de la publier=
+ sur votre Classroom.</div></div><form action=3D'' method=3D'GET'><div styl=
+e=3D"border: 1px solid #dadce0; padding: 20px 12px;background-color: #fff; =
+border-radius: 8px; margin-bottom: 12px;margin-bottom: 12px;"><div style=3D=
+"padding: 0 12px;"><h2 dir=3D"auto" style=3D"color: #202124;font-family: &#=
+39;Google Sans&#39;,Roboto,Helvetica,Arial,sans-serif;font-size: 16px; font=
+-weight: 400; line-height: 24px;white-space: pre-wrap;margin: 0 0 16px;">Ad=
+resse e-mail<span style=3D"color: #d93025;" aria-label=3D"Question obligato=
+ire"> *</span></h2></div><div style=3D"padding: 0 12px;"><div style=3D"widt=
+h: 100%;"><div dir=3D"auto" style=3D"white-space: pre-wrap;border-bottom: 1=
+px dotted rgba(0,0,0,0.38);margin: 12px 0 8px; min-height: 20px;display: in=
+line-block; max-width: 100%; min-width: 50%;">ouleymatak@gmail.com</div></d=
+iv></div></div><div style=3D"border: 1px solid #dadce0; padding: 20px 12px;=
+background-color: #fff; border-radius: 8px; margin-bottom: 12px;margin-bott=
+om: 12px;"><div style=3D"padding: 0 12px;"><h2 dir=3D"auto" style=3D"color:=
+ #202124;font-family: &#39;Google Sans&#39;,Roboto,Helvetica,Arial,sans-ser=
+if;font-size: 16px; font-weight: 400; line-height: 24px;white-space: pre-wr=
+ap;margin: 0 0 16px;">Nom/pr=C3=A9nom<span style=3D"color: #d93025;" aria-l=
+abel=3D"Question obligatoire"> *</span></h2></div><div style=3D"padding: 0 =
+12px;"><div style=3D"width: 100%;"><div dir=3D"auto" style=3D"white-space: =
+pre-wrap;border-bottom: 1px dotted rgba(0,0,0,0.38);margin: 12px 0 8px; min=
+-height: 20px;display: inline-block; max-width: 100%; min-width: 50%;">Kant=
+e Ouleymata </div></div></div></div><div style=3D"border: 1px solid #dadce0=
+; padding: 20px 12px;background-color: #fff; border-radius: 8px; margin-bot=
+tom: 12px;margin-bottom: 12px;"><div style=3D"padding: 0 12px;"><h2 dir=3D"=
+auto" style=3D"color: #202124;font-family: &#39;Google Sans&#39;,Roboto,Hel=
+vetica,Arial,sans-serif;font-size: 16px; font-weight: 400; line-height: 24p=
+x;white-space: pre-wrap;margin: 0 0 16px;">Classe<span style=3D"color: #d93=
+025;" aria-label=3D"Question obligatoire"> *</span></h2></div><div style=3D=
+"padding: 0 12px;"><div style=3D"margin-top: 16px;"><table style=3D"color: =
+#202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-size: 14px; fon=
+t-weight: 400; line-height: 20px;margin-top: 8px; table-layout: fixed;"><tr=
+><td><div role=3D"radio" aria-checked=3D"true" aria-label=3D"IAS-M1LM-DA1" =
+style=3D"border: solid 2px #5f6368; height: 16px; width: 16px; border-radiu=
+s: 50%;"><div style=3D"background-color: #5f6368; border: solid 5px #5f6368=
+; border-radius: 50%; margin: 3px; height: 0; width: 0;"></div></div></td><=
+td style=3D"min-width: 8px;"></td><td style=3D"word-break: break-word;">IAS=
+-M1LM-DA1</td></tr></table></div><div style=3D"margin-top: 16px;"><table st=
+yle=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-s=
+ize: 14px; font-weight: 400; line-height: 20px;color: #70757a;margin-top: 8=
+px; table-layout: fixed;"><tr><td><div role=3D"radio" aria-checked=3D"false=
+" aria-label=3D"IAS-M1JV-DA1" style=3D"border: solid 2px #9aa0a6; height: 1=
+6px; width: 16px; border-radius: 50%;"></div></td><td style=3D"min-width: 8=
+px;"></td><td style=3D"word-break: break-word;">IAS-M1JV-DA1</td></tr></tab=
+le></div><div style=3D"margin-top: 16px;"><table style=3D"color: #202124;fo=
+nt-family: Roboto,Helvetica,Arial,sans-serif;font-size: 14px; font-weight: =
+400; line-height: 20px;color: #70757a;margin-top: 8px; table-layout: fixed;=
+"><tr><td><div role=3D"radio" aria-checked=3D"false" aria-label=3D"IAS-M1VS=
+-DA1" style=3D"border: solid 2px #9aa0a6; height: 16px; width: 16px; border=
+-radius: 50%;"></div></td><td style=3D"min-width: 8px;"></td><td style=3D"w=
+ord-break: break-word;">IAS-M1VS-DA1</td></tr></table></div><div style=3D"m=
+argin-top: 16px;"><table style=3D"color: #202124;font-family: Roboto,Helvet=
+ica,Arial,sans-serif;font-size: 14px; font-weight: 400; line-height: 20px;c=
+olor: #70757a;margin-top: 8px; table-layout: fixed;"><tr><td><div role=3D"r=
+adio" aria-checked=3D"false" aria-label=3D"IAS-M1LM-DS1" style=3D"border: s=
+olid 2px #9aa0a6; height: 16px; width: 16px; border-radius: 50%;"></div></t=
+d><td style=3D"min-width: 8px;"></td><td style=3D"word-break: break-word;">=
+IAS-M1LM-DS1</td></tr></table></div><div style=3D"margin-top: 16px;"><table=
+ style=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;fon=
+t-size: 14px; font-weight: 400; line-height: 20px;color: #70757a;margin-top=
+: 8px; table-layout: fixed;"><tr><td><div role=3D"radio" aria-checked=3D"fa=
+lse" aria-label=3D"IAS-M1VS-DS1" style=3D"border: solid 2px #9aa0a6; height=
+: 16px; width: 16px; border-radius: 50%;"></div></td><td style=3D"min-width=
+: 8px;"></td><td style=3D"word-break: break-word;">IAS-M1VS-DS1</td></tr></=
+table></div></div></div><div style=3D"border-bottom: 1px solid #dadce0; bor=
+der-left: 1px solid #dadce0; border-right: 1px solid #dadce0; border-top: 8=
+px solid rgb(93,60,171); padding: 0;background-color: #fff; border-radius: =
+8px; margin-bottom: 12px;margin-bottom: 12px;"><div style=3D"padding: 0 ;">=
+<h2 dir=3D"auto" style=3D"color: #fff;font-family: &#39;Google Sans&#39;,Ro=
+boto,Helvetica,Arial,sans-serif;font-size: 16px; font-weight: 400; line-hei=
+ght: 24px;background-color: rgb(93,60,171); margin: 0; padding: 4px 24px 12=
+px;">Etude de cas</h2><div dir=3D"auto" style=3D"color: #202124;font-family=
+: Roboto,Helvetica,Arial,sans-serif;font-size: 12px; font-weight: 400; lett=
+er-spacing: .25px; line-height: 16px;white-space: pre-wrap;margin: 24px 17p=
+x;">La maison Guerlain, fond=C3=A9e en 1828, a lanc=C3=A9 sa nouvelle fragr=
+ance f=C3=A9minine, La petite Robe Noire en  septembre 2009, qui figure tou=
+jours parmi le top 10 des parfums f=C3=A9minins plus de 10 ans apr=C3=A8s.=
+=20
+
+Ce parfum s=E2=80=99inscrit dans l=E2=80=99histoire de Guerlain qui perp=C3=
+=A9tue savoir-faire et innovation depuis 191 ans. 5 g=C3=A9n=C3=A9rations d=
+e parfumeurs se sont succ=C3=A9d=C3=A9 depuis 1828, donnant naissance =C3=
+=A0 des mythes de la  parfumerie, tels Jicky ou Shalimar. Souvent consid=C3=
+=A9r=C3=A9s comme des r=C3=A9volutions olfactives, ces parfums  refl=C3=A8t=
+ent un savoir-faire exceptionnel en termes de s=C3=A9lection des mati=C3=A8=
+res premi=C3=A8re, de cr=C3=A9ation de  flacons, (souvent con=C3=A7us en co=
+llaboration avec des designers de renom comme Baccarat) et de conteur  d=E2=
+=80=99histoires.=20
+
+Initialement distribu=C3=A9 uniquement dans les boutiques parisiennes au se=
+in des collections exclusives, la=20
+fragrance s=C3=A9duit rapidement les clients. Forte de ce succ=C3=A8s, La p=
+etite Robe Noire est r=C3=A9interpr=C3=A9t=C3=A9e en 2012 par le parfumeur =
+de la maison Guerlain,  Thierry Wasser. Une analyse marketing compl=C3=A8te=
+ permet de mieux comprendre la logique et le succ=C3=A8s du meilleur lancem=
+ent historique d=E2=80=99un parfum f=C3=A9minin en France.
+
+L=E2=80=99analyse externe et interne=20
+
+L=E2=80=99analyse externe est conduite par le d=C3=A9partement marketing en=
+ charge de la conception des nouvelles  fragrances. Le march=C3=A9 des parf=
+ums est estim=C3=A9 =C3=A0 plus de 5 milliards d=E2=80=99euros en 2009 dont=
+ 1.9 milliards en France. En France la parfumerie repr=C3=A9sente 65% du ma=
+rch=C3=A9 de la beaut=C3=A9 en 2009, ce qui en fait un  secteur strat=C3=A9=
+gique dans lequel il faut investir. En parall=C3=A8le, une =C3=A9tude des I=
+nsight consommateurs(une  opinion, un comportement) indique que, face au mo=
+nde actuel, ou tout est planifi=C3=A9, calcul=C3=A9, organis=C3=A9,  les fe=
+mmes aspirent =C3=A0 laisser parler leur intuition et leur =C3=A9motions. P=
+ar ailleurs, une =C3=A9tude sur la  segmentation olfactive de l=E2=80=99off=
+re dans la parfumerie met en avant le poids important dans les  fragrances =
+florales premier segment olfactive dans tous les pays mais sous repr=C3=A9s=
+ent=C3=A9 chez Guerlain.  Les fragrances florales repr=C3=A9sentent 70 % du=
+ march=C3=A9 en Russie, 61% aux Etats-Unis, contre seulement  31% en France=
+, ce qui constitue un r=C3=A9el potentiel de croissance. Parce que ce lance=
+ment est destin=C3=A9 =C3=A0  concurrencer le top 10 international (notamme=
+nt, J=E2=80=99adore de Dior, Miss Dior, N=C2=B05 et Coco  Mademoiselle de C=
+hanel ou Flower de Kenzo), on analyse soigneusement le mix et la strat=C3=
+=A9gie de  construction de gamme de ses concurrents.=20
+
+Au plan de l=E2=80=99analyse interne, la marque souhaite construire un pili=
+er =C3=A0 l=E2=80=99international, son parfum  phare. Shalimar, =C3=A9tant =
+surtout performant en France. En 2009 l=E2=80=99industrie du luxe est touch=
+=C3=A9e par la  crise et Guerlain comprend que, pour exister sur le march=
+=C3=A9 tr=C3=A8s concurrentiel de la parfumerie,  l=E2=80=99entreprise doit=
+ changer d=E2=80=99=C3=A9chelle tout en veillant =C3=A0 ne pas casser ses c=
+odes historiques. Elle tire les  le=C3=A7ons des bilans des pr=C3=A9c=C3=A9=
+dents lancements de Guerlain, L=E2=80=99Instant, Insolence et Idylle, en id=
+entifiant  les points cl=C3=A9s suivant : Proposer un mix fortement porteur=
+ de l=E2=80=99ADN de la marque tout en  l=E2=80=99internationalisant et en =
+veillant =C3=A0 recruter une cible jeune, et soutenir la ligne de produits =
+durant  plusieurs ann=C3=A9es pour construire un parfum solide et p=C3=A9re=
+nne.=20
+
+Diagnostic=20
+
+A l=E2=80=99issue de cette phase d=E2=80=99analyse, la marque Guerlain d=C3=
+=A9cide de puiser dans son patrimoine pour  mettre en =C5=93uvre un lanceme=
+nt audacieux. La marque s=E2=80=99inspire de la philosophie d=E2=80=99innov=
+ation et de  culture du beau de son fondateur Pierre-Fran=C3=A7ois-Pascal G=
+uerlain, qui disant =C3=A0 ses =C3=A9quipe en 1828 :  =C2=AB Faites de bon =
+produits, ne c=C3=A9dez jamais sur la qualit=C3=A9. Pour le reste ayez des =
+id=C3=A9es simples et  appliquez-les scrupuleusement. =C2=BB Chaque facette=
+ de la cr=C3=A9ation est alors imagin=C3=A9e pour =C3=AAtre inattendue et d=
+iff=C3=A9rente. Il s=E2=80=99agit de se distinguer des autres fragrances du=
+ patrimoine Guerlain tout en  =C3=A9laborant une fragrance suffisamment att=
+ractive et unique de sorte =C3=A0 se d=C3=A9marquer de la concurrence  inte=
+nse, caract=C3=A9ristique de ce march=C3=A9.=20
+
+Cible, positionnement et objectifs=20
+
+Le lancement est con=C3=A7u pour plaire =C3=A0 un nouveau c=C5=93ur de cibl=
+e, les jeunes femmes de 20 =C3=A0 30 ans,  =C3=A9loign=C3=A9es de l=E2=80=
+=99univers premier des client=C3=A8les fid=C3=A8les des parfums Guerlain. L=
+e positionnement est construit autour du patrimoine de la marque, revisit=
+=C3=A9 avec un regard neuf pour  s=C3=A9duire cette nouvelle client=C3=A8le=
+. A compte-courant des pratiques du secteur, il est d=C3=A9cid=C3=A9 de ne =
+pas  faire appel =C3=A0 une =C3=A9g=C3=A9rie. Guerlain souhaite remplacer u=
+n visage par une attitude et une vision du  monde. Derri=C3=A8re La petite =
+Robe Noire se cache une parisienne r=C3=AAv=C3=A9e, dot=C3=A9e d=E2=80=99un=
+e personnalit=C3=A9 joyeuse,  un brin insolente et mutine. En termes d=E2=
+=80=99objectifs, Guerlain souhaite cr=C3=A9er une nouvelle image et  b=C3=
+=A9n=C3=A9ficier d=E2=80=99une notori=C3=A9t=C3=A9 renforc=C3=A9e. Il s=E2=
+=80=99agit =C3=A9galement d=E2=80=99installer la marque dans le top 3 fran=
+=C3=A7ais et  le top 10 mondial Il est d=C3=A9cid=C3=A9 de concentrer d=E2=
+=80=99abord les moyens de France en mars 2012 puis =C3=A0  l=E2=80=99intern=
+ational en juillet de la m=C3=AAme ann=C3=A9e.=20
+
+Le Produit=20
+
+Le parfum est nomm=C3=A9 La petite Robe Noire, en hommage =C3=A0 la  pi=C3=
+=A8ce maitresse, chic et intemporel, du dressing f=C3=A9minin. Guerlain se =
+rapproche ainsi de l=E2=80=99univers de la mode en s=E2=80=99attribuant le =
+mythe de l=E2=80=99=C3=A9ternel f=C3=A9minin. Le Parfum est revisit=C3=A9 a=
+utour d=E2=80=99ingr=C3=A9dients audacieusement surdos=C3=A9s pour lui donn=
+er une note sensuelle, d=C3=A9licate et ultra f=C3=A9minine. Thierry Wasser=
+ choisit des notes de t=C3=A8te gourmandes, comme la cerise noire et la ber=
+gamote puis la rose noire pour la note de c=C5=93ur et, enfin, des notes de=
+ fonds addictives comme le the fum=C3=A9 et le patchouli. Quant au flacon, =
+Guerlain opte pour un objet historique de la maison, celui de L=E2=80=99Heu=
+re Bleue, cr=C3=A9=C3=A9 en =20
+1912 un flacon en verre dot=C3=A9 d=E2=80=99un bouchon en c=C5=93ur invers=
+=C3=A9 et un d=C3=A9grad=C3=A9 de roses. Le concept et le  flacon sont pr=
+=C3=A9sent=C3=A9s =C3=A0 un panel de femmes pour mieux comprendre leurs res=
+sentis et leurs  projections.  La communication prend le contrepied des cod=
+es habituels du march=C3=A9. Guerlain de fait pas appel =C3=A0 une =C3=A9g=
+=C3=A9rie, mais =C3=A0 une silhouette sophistiqu=C3=A9e, croqu=C3=A9e par l=
+e duo de cr=C3=A9ateurs et graphistes, Kuntzel  et Deygas. Elle fait de Par=
+is son terrain de jeu au son du morceau mythique de Nancy Sinatra, This  Bo=
+ots are made for walking. La Petite Robe Noire =C3=A9volue dans une mise en=
+ sc=C3=A8ne unique aux fronti=C3=A8res  du parfum et de la mode.=20
+
+Le Lancement =20
+
+Le plan de lancement doit bien s=C3=BBr donner corps =C3=A0 l=E2=80=99unive=
+rs du produit, mais =C3=A9galement, travailler la  visibilit=C3=A9 et la di=
+ff=C3=A9renciation par rapport aux concurrents. Deux formats ont =C3=A9t=C3=
+=A9 lanc=C3=A9s : le 30 ml, afin  de proposer un prix d=E2=80=99appel inf=
+=C3=A9rieur =C3=A0 60 =E2=82=AC, et le 50 ml. La distribution a lieu dans l=
+es boutiques  Guerlain, les parfumeries s=C3=A9lectives et les grands magas=
+ins. Les =C3=A9l=C3=A9ments marchandising et les guides  envoy=C3=A9s aux f=
+iliales contiennent l=E2=80=99ensemble des d=C3=A9clinaisons possibles en f=
+onction des caract=C3=A9ristiques des points de vente et des =C3=A9v=C3=A9n=
+ements organis=C3=A9s localement. La campagne de relations presses met  en =
+avant l=E2=80=99ensemble des acteurs ayant particip=C3=A9s =C3=A0 la concep=
+tion du parfum (parfumeurs, designers). =20
+
+La campagne de lancement d=C3=A9cline l=E2=80=99audace cr=C3=A9ative de cet=
+te nouvelle fragrance sur tous les supports.  La marque a d=E2=80=99abord p=
+ris le contrepied des pratiques en France en lan=C3=A7ant son parfum non pa=
+s en  Septembre en pr=C3=A9vision de No=C3=ABl, mais en Mars, p=C3=A9riode =
+habituellement creuse dans la parfumerie, situ=C3=A9e apr=C3=A8s la Saint V=
+alentin et avant la f=C3=AAte des m=C3=A8res. La marque a aussi cr=C3=A9=C3=
+=A9 le buzz avec une avant premi=C3=A8re =C3=A0 la Fashion Week parisienne,=
+ puis une campagne de street marketing avec des silhouettes  de 1m80 plac=
+=C3=A9es dans 5 grandes villes fran=C3=A7aises et un emplacement sur les co=
+lonnes Morris habituellement r=C3=A9serv=C3=A9es =C3=A0 la culture. Une cam=
+pagne digitale a =C3=A9galement =C3=A9t=C3=A9 men=C3=A9e avec un teasing su=
+r Facebook, la pr=C3=A9sence sur le bandeau d=E2=80=99accueil de la page Yo=
+u Tube, l=E2=80=99habillage des grands sites  web f=C3=A9minins comme celui=
+ du magazine Elle. Le film publicitaire de 45 seconde a b=C3=A9n=C3=A9fici=
+=C3=A9 d=E2=80=99une soir=C3=A9e  =C3=A9v=C3=A9nementielle sur TF1, France2=
+, Canal + et M6, suivi de 3 semaines de diffusion traditionnelle. Cette  st=
+rat=C3=A9gie de communication =C3=A0 360=C2=B0 a =C3=A9t=C3=A9 compl=C3=A9t=
+=C3=A9e par des encarts presses et des publicit=C3=A9s en simples et double=
+s pages. =20
+
+Les R=C3=A9sultats =20
+
+Le lancement a =C3=A9t=C3=A9 un v=C3=A9ritable succ=C3=A8s. La petite Robe =
+Noire a r=C3=A9alis=C3=A9 un CA de 40 M=E2=82=AC en 2012. En 3  mois, elle =
+a d=C3=A9pass=C3=A9 la barre symbolique du million de flacons vendus et s=
+=E2=80=99est plac=C3=A9e en 2eme position  des parfums f=C3=A9minins en Fra=
+nce. Elle a re=C3=A7u de nombreux prix, dont celui de la meilleure  communi=
+cation globale, ainsi que tous les prix de sa cat=C3=A9gorie aux FiFi Award=
+s (Fragrance Fondation  Fran=C3=A7aise). Guerlain a depuis continu=C3=A9 =
+=C3=A0 soutenir le parfum avec plusieurs d=C3=A9clinaisons : l=E2=80=99eau =
+de  toilette en 2013, l=E2=80=99eau fraiche en 2015 avec un jus vert tendre=
+, la version =C2=AB black Perfecto =C2=BB, plus florale,  en 2017, puis l=
+=E2=80=99eau de parfum l=C3=A9g=C3=A8re en 2018. Une gamme de maquillage av=
+ec un rouge =C3=A0 l=C3=A8vres et un  vernis =C3=A0 ongles a =C3=A9galement=
+ =C3=A9t=C3=A9 cr=C3=A9=C3=A9.
+</div></div><div style=3D"padding: 0 12px;"></div></div><div style=3D"borde=
+r: 1px solid #dadce0; padding: 20px 12px;background-color: #fff; border-rad=
+ius: 8px; margin-bottom: 12px;margin-bottom: 12px;"><div style=3D"padding: =
+0 12px;"><h2 dir=3D"auto" style=3D"color: #202124;font-family: &#39;Google =
+Sans&#39;,Roboto,Helvetica,Arial,sans-serif;font-size: 16px; font-weight: 4=
+00; line-height: 24px;white-space: pre-wrap;margin: 0 0 16px;">1. Classez l=
+es =C3=A9l=C3=A9ments de l=E2=80=99analyse sous forme de forces, faiblesses=
+, opportunit=C3=A9s et menaces.  </h2></div><div style=3D"padding: 0 12px;"=
+><div dir=3D"auto" style=3D"white-space: pre-wrap;border-bottom: 1px dotted=
+ rgba(0,0,0,0.38);margin: 12px 0 8px; min-height: 20px;width: 100%;">1. Cla=
+ssez les =C3=A9l=C3=A9ments de l=E2=80=99analyse sous forme de forces, faib=
+lesses, opportunit=C3=A9s et menaces. =20
+Le SWOT est une m=C3=A9thode d&#39;analyse qui permet aux entreprises, un d=
+=C3=A9veloppement g=C3=A9n=C3=A9ral, en croisant des donn=C3=A9es internes =
+et des donn=C3=A9es externes. les donn=C3=A9es internes sont les points for=
+ts et les faiblesses de l&#39;entreprise tandis que les donn=C3=A9es extern=
+es repr=C3=A9sentent les opportunit=C3=A9s et les menaces. Ci-dessous le SW=
+OT sur l&#39;analyse de Guerlain.
+
+Force:=20
+-la petite robe noire de Guerlain est une fragrance qui s=C3=A9duit rapidem=
+ent ses clients=20
+-le march=C3=A9 des parfums est estim=C3=A9 =C3=A0 1.9 milliards en France =
+et repr=C3=A9sente 65% du march=C3=A9 de la beaut=C3=A9 en France. Ce sont =
+des parts importantes que ce soit au niveau international et au niveau nati=
+onal
+-le top 10 des parfums f=C3=A9minins plus de 10 ans apr=C3=A8s
+-la campagne de lancement du produit a eu lieu en Mars, p=C3=A9riode creuse=
+ o=C3=B9 on n&#39;a pas habituellement de campagnes de ce genre
+- 2eme position  des parfums f=C3=A9minins en France
+-la fragrance a re=C3=A7u  la meilleure  communication globale, ainsi que t=
+ous les prix de sa cat=C3=A9gorie aux FiFi Awards
+-cr=C3=A9ation de la gamme la petite robe noire
+- le top 10 mondial=20
+-campagne publicitaire tr=C3=A8s strat=C3=A9gique=20
+
+Faiblesse:=20
+-une sous repr=C3=A9sentation des fragrances florales chez Guerlain
+-les fragrances florales repr=C3=A9sentent seulement 31% du march=C3=A9 en =
+France=20
+-=C3=A0 vouloir s=C3=A9duire une client=C3=A8le =C3=A0 l=E2=80=99internatio=
+nale, Guerlain risque de casser ses empreintes historiques
+-la fragrance est tr=C3=A8s peu cibl=C3=A9e et concerne uniquement  les 20-=
+30 ans=20
+
+Opportunit=C3=A9:=20
+-la parfumerie c=E2=80=99est un secteur dans lequel il est judicieux d=E2=
+=80=99investir=20
+-commercialiser la petite robe noire =C3=A0 l=E2=80=99internationale
+-la possibilit=C3=A9 de toucher plus de jeunes
+
+
+Menaces:
+-les fragrance florales sont plus repr=C3=A9sent=C3=A9es =C3=A0 l=E2=80=99i=
+nternationale avec 70% du march=C3=A9, en Russie, 61% aux Etats-Unis, contr=
+e seulement  31% en France
+</div></div></div><div style=3D"border: 1px solid #dadce0; padding: 20px 12=
+px;background-color: #fff; border-radius: 8px; margin-bottom: 12px;margin-b=
+ottom: 12px;"><div style=3D"padding: 0 12px;"><h2 dir=3D"auto" style=3D"col=
+or: #202124;font-family: &#39;Google Sans&#39;,Roboto,Helvetica,Arial,sans-=
+serif;font-size: 16px; font-weight: 400; line-height: 24px;white-space: pre=
+-wrap;margin: 0 0 16px;">2. Analysez comment est construite la valeur offer=
+te aux clients de La petite Robe Noire et identifiez  sur quelles comp=C3=
+=A9tences s=E2=80=99appuie Guerlain pour la proposer. </h2></div><div style=
+=3D"padding: 0 12px;"><div dir=3D"auto" style=3D"white-space: pre-wrap;bord=
+er-bottom: 1px dotted rgba(0,0,0,0.38);margin: 12px 0 8px; min-height: 20px=
+;width: 100%;">2. Analysez comment est construite la valeur offerte aux cli=
+ents de La petite Robe Noire et identifiez  sur quelles comp=C3=A9tences s=
+=E2=80=99appuie Guerlain pour la proposer.=20
+Tout d&#39;abord la valeur offerte c&#39;est un proposition strat=C3=A9giqu=
+e qui repr=C3=A9sente le gain per=C3=A7u par le client en =C3=A9change d&#3=
+9;un co=C3=BBt verser. Ici la marque s&#39;est inspir=C3=A9e de de son fond=
+ateur Pierre-Fran=C3=A7ois-Pascal Guerlain qui disait &quot; Faites de bon =
+produits, ne c=C3=A9dez jamais sur la qualit=C3=A9. Pour le reste ayez des =
+id=C3=A9es simples et  appliquez-les scrupuleusement&quot; pour proposer =
+=C3=A0 ses client une fragrance simple, de bonne qualit=C3=A9, attractive, =
+unique, d=C3=A9licate, sensuelle et ultra feminine. Et pour se faire, Thier=
+ry Wasser a choisi de travailler avec des notes de t=C3=A8te gourmandes, co=
+mme la cerise noire et la bergamote puis la rose noire pour la note de c=C5=
+=93ur et, enfin, des notes de fonds addictives comme le the fum=C3=A9 et le=
+ patchouli. Pour le flacon, Guerlain choisit celui de L=E2=80=99Heure Bleue=
+, cr=C3=A9=C3=A9 en 1912 un flacon en verre dot=C3=A9 d=E2=80=99un bouchon =
+en c=C5=93ur invers=C3=A9 et un d=C3=A9grad=C3=A9 de roses.</div></div></di=
+v><div style=3D"border: 1px solid #dadce0; padding: 20px 12px;background-co=
+lor: #fff; border-radius: 8px; margin-bottom: 12px;margin-bottom: 12px;"><d=
+iv style=3D"padding: 0 12px;"><h2 dir=3D"auto" style=3D"color: #202124;font=
+-family: &#39;Google Sans&#39;,Roboto,Helvetica,Arial,sans-serif;font-size:=
+ 16px; font-weight: 400; line-height: 24px;white-space: pre-wrap;margin: 0 =
+0 16px;">3. Identifiez les indicateurs utilis=C3=A9s par Guerlain pour mesu=
+rer le succ=C3=A8s de son plan marketing. Quels  autres indicateurs peuvent=
+ =C3=AAtre mobilis=C3=A9s ? Pourquoi ? </h2></div><div style=3D"padding: 0 =
+12px;"><div dir=3D"auto" style=3D"white-space: pre-wrap;border-bottom: 1px =
+dotted rgba(0,0,0,0.38);margin: 12px 0 8px; min-height: 20px;width: 100%;">=
+3. Identifiez les indicateurs utilis=C3=A9s par Guerlain pour mesurer le su=
+cc=C3=A8s de son plan marketing. Quels  autres indicateurs peuvent =C3=AAtr=
+e mobilis=C3=A9s ? Pourquoi ?=20
+les indicateurs utilis=C3=A9s par Guerlain pour mesurer le succ=C3=A8s de s=
+on plan marketing sont:
+-des facteurs bas=C3=A9s sur des donn=C3=A9es internes notamment le chiffre=
+ d&#39;affaire de 40 M d&#39;euro en 2012 avec 1 million de flacons vendus.
+-Guerlain a =C3=A9galement re=C3=A7u des prix par exemple le prix de la mei=
+lleure  communication globale, ainsi que tous les prix de sa cat=C3=A9gorie=
+ aux FiFi Awards (Fragrance Fondation  Fran=C3=A7aise).
+Par ailleurs Guerlain pourrait d=C3=A9velopper une compr=C3=A9hension fine =
+des clients afin de mettre en place une segmentation des clients en fonctio=
+n de leur satisfaction ainsi obtenir une note de satisfaction qui une fois =
+positive pourrait participer aux indicateurs clef de succ=C3=A8s du marketi=
+ng de Guerlain.=20
+</div></div></div><div style=3D"border: 1px solid #dadce0; padding: 20px 12=
+px;background-color: #fff; border-radius: 8px; margin-bottom: 12px;margin-b=
+ottom: 12px;"><div style=3D"padding: 0 12px;"><h2 dir=3D"auto" style=3D"col=
+or: #202124;font-family: &#39;Google Sans&#39;,Roboto,Helvetica,Arial,sans-=
+serif;font-size: 16px; font-weight: 400; line-height: 24px;white-space: pre=
+-wrap;margin: 0 0 16px;">4. Quelles recommandations formuleriez-vous =C3=A0=
+ l=E2=80=99attention de Guerlain pour lui permettre d=E2=80=99assurer  le d=
+=C3=A9veloppement et la croissance de La petite Robe Noire pour les prochai=
+nes ann=C3=A9es ? </h2></div><div style=3D"padding: 0 12px;"><div dir=3D"au=
+to" style=3D"white-space: pre-wrap;border-bottom: 1px dotted rgba(0,0,0,0.3=
+8);margin: 12px 0 8px; min-height: 20px;width: 100%;">4. Quelles recommanda=
+tions formuleriez-vous =C3=A0 l=E2=80=99attention de Guerlain pour lui perm=
+ettre d=E2=80=99assurer  le d=C3=A9veloppement et la croissance de La petit=
+e Robe Noire pour les prochaines ann=C3=A9es ?=20
+=C3=89tant donn=C3=A9 que Guerlain est sous-repr=C3=A9sent=C3=A9 dans la fa=
+brication des fragrances florales (31% du march=C3=A9 contre 70% en Russie =
+par exemple), la marque devrait se lancer dans une version tr=C3=A8s floral=
+e ce qui pourrait cr=C3=A9er de la croissance et attirer une client=C3=A8le=
+ =C3=A0 l=E2=80=99internationale.
+La marque pourrait aussi proposer diverses autres version de la fragrance a=
+fin de toucher tous les =C3=A2ges outre que la tranche des 20-30 ans.=20
+</div></div></div></form></div><table align=3D"center" cellpadding=3D"0" ce=
+llspacing=3D"0" style=3D"max-width: 672px; min-width: 154px; border-collaps=
+e: separate; border-spacing: 0 0.2em;" width=3D"100%" role=3D"presentation"=
+><tbody><tr height=3D"24px"><td></td></tr><tr><td><a href=3D"https://docs.g=
+oogle.com/forms?usp=3Dmail_form_link" style=3D"color: #424242; font-size: 1=
+3px;">Cr=C3=A9er votre propre formulaire Google</a></td></tr><tr><td><a hre=
+f=3D"https://docs.google.com/forms/d/e/1FAIpQLSeGl0QzH55HCLaSSYWXEjO7Hu7qUF=
+vbH6_5xXCDKp9zVOkxdw/reportabuse?source=3Dhttps://docs.google.com/forms/d/e=
+/1FAIpQLSeGl0QzH55HCLaSSYWXEjO7Hu7qUFvbH6_5xXCDKp9zVOkxdw/viewform?embedded=
+%3Dtrue&amp;usp=3Dmail_receipt_abuse" target=3D"_blank" style=3D"color: #42=
+4242; font-size: 13px;">Signaler un cas d'utilisation abusive</a></td></tr>=
+</tbody></table></div></body></html>
+--000000000000c7f6fd05d6df0ad2--
